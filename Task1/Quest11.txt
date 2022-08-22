@@ -1,0 +1,19 @@
+using System;
+class Developer {
+    public static void Main(string[] args)
+    {
+        string let = "Python";
+        int i = 0;
+        Console.WriteLine("Which position do you wanna Skip \n");
+        int ind=Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine("");
+        while (i<let.Length){
+            if (ind != i)
+            {
+                Console.WriteLine(let[i]);
+            }
+            
+            i++;
+        }
+    }
+}

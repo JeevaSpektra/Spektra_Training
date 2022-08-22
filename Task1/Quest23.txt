@@ -1,0 +1,43 @@
+using System;
+using System.Collections.Generic;
+//using System.Linq;
+using System.Text;
+using System.IO;
+
+class Developer
+{
+    public static void Main()
+    {
+        string[] arr1 = { "aaa.frx", "bbb.TXT", "xyz.dbf", "abc.pdf", "aaaa.PDF", "xyz.frt", "abc.xml", "ccc.txt", "zzz.txt" };
+
+        Console.Write("\n Using LINQ Method  : Count file extensions and group it : ");
+        Console.Write("\n------------------------------------------\n");
+
+        Console.Write("\nThe files are : mello.frx, Jeeva.TXT, hello.dbf,Document.pdf");
+        Console.Write("\n                Marksheet.PDF,Public.frt, Sello.xml, Program.txt, Developer.txt\n");
+
+        Console.Write("\nHere is the group of extension of the files : \n\n");
+
+        //for(int i=0;i<arr1.Length;i++){
+        // if (arr1 ==)
+        //
+        // }
+        //}
+        //var ret= from arr1 as ext in .GetAllEmployees().TrimStart('.')
+       // group arr1 by arr1.ext;
+
+
+
+
+        var fGrp = arr1.Select(file => Path.GetExtension(file).TrimStart('.').ToLower())
+                 .GroupBy(z => z, (fExt, extCtr) => new
+                 {
+                     Extension = fExt,
+                     Count = extCtr.Count()
+                 });
+
+        foreach (var m in fGrp)
+            Console.WriteLine("{0} File(s) with {1} Extension ", m.Count, m.Extension);
+        Console.ReadLine();
+    }
+}

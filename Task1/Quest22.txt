@@ -1,0 +1,50 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+
+class Developer
+{
+    static void Main(string[] args)
+    {
+
+        List<int> mycart = new List<int>();
+        mycart.Add(5);
+        mycart.Add(7);
+        mycart.Add(13);
+        mycart.Add(24);
+        mycart.Add(6);
+        mycart.Add(9);
+        mycart.Add(8);
+        mycart.Add(7);
+
+
+
+        Console.WriteLine("\nThe members of the list are : ");
+        foreach (var lstnum in mycart)
+        {
+            Console.WriteLine(lstnum + " ");
+        }
+
+        Console.Write("How many records you want to display in the list ? : ");
+        int n = Convert.ToInt32(Console.ReadLine());
+
+        //int biggest = list[0];
+        //for (int i = 1; i < list.Count; ++i)
+        //{
+        //    if (list[i] > biggest)
+        //    {
+        //        biggest = list[i];
+        //    }
+        //}
+        mycart.Sort();
+        mycart.Reverse();
+
+        Console.Write("The top {0} records from the list are : \n", n);
+        foreach (int topn in mycart.Take(n))
+        {
+            Console.WriteLine(topn);
+        }
+    }
+}
