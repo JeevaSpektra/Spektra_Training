@@ -70,5 +70,7 @@ public class Program
 ```
 
 
-## Output : 
-![](images\FunctionArray.png)
+
+
+
+![](images/FunctionArray.png)
