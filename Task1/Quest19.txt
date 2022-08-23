@@ -6,7 +6,7 @@ class Developer
 {
  static void Main(string[] args)
     {
-    // code from DevCurry.com
+    
     var arr1 = new[] { 3, 9, 2, 8, 6, 5 };
 
             Console.Write("\nLINQ : Find the number and its square of an array which is more than 20 : "); 
