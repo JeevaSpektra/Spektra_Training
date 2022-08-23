@@ -71,6 +71,4 @@ public class Program
 
 
 ## Output : 
-FunctionArray.png
-
- ![](images/FunctionArray.png)
+![](images\FunctionArray.png)
