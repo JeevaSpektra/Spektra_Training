@@ -13,68 +13,79 @@
 ```
 using System;
 using System.Collections.Generic;
-public class Program
+using System.Linq;
+using System.Text.RegularExpressions;
+// Compiler version 4.0, .NET Framework 4.5
+
+
+namespace Dcoder
 {
-    public static int Solution(int[] arr)
+    public class Program
     {
-        int output = 0;
-        for (int k = 0; k < arr.Length; k++)
+        public static void Main(string[] args)
         {
-            Console.WriteLine(arr[k]);
-        }
-        Console.WriteLine("\n");
-        Array.Sort(arr);
-        Array.Reverse(arr);
-        for (int k = 0; k < arr.Length; k++)
-        {
-            Console.WriteLine(arr[k]);
-        }
+            //Your code goes here
+            Console.WriteLine("Hello, Dcoder!");
+            //int[] q = { -2, -1 };
+            int[] q = { 1,2,6,4,3 };
 
-        Console.WriteLine("\n");
 
-        if (arr[0] <= 0)
-        {
+            int output = 0;
 
-            output = 1;
-        }
+            int[] arr = q.Distinct().ToArray();
+            int arr_len = arr.Length;
+            for (int k = 0; k < arr_len; k++)
+            {
+                Console.WriteLine(arr[k]);
+            }
 
-        for (int i = 0; i < arr.Length - 1 && output != 1; i++)
-        {
+            Array.Sort(arr);
 
-            if (arr[i] != arr[i + 1] + 1)
+            // Array.Reverse(arr);
+            for (int k = 0; k < arr_len; k++)
+            {
+                Console.WriteLine(arr[k]);
+            }
+
+            Console.WriteLine("\n");
+
+
+            if (arr[arr_len - 1] <= 0)
             {
 
-                output = arr[i] - 1;
-                break;
+                output = 1;
             }
+
+            for (int i = 0; i < arr_len - 1 && output != 1; i++)
+            {
+                if (arr[i] < 0)
+                {
+                    continue;
+                }
+
+                if (arr[i] != arr[i + 1] - 1)
+                {
+
+                    output = arr[i] + 1;
+                    break;
+
+                }
+            }
+
+            if (output == 0)
+            {
+                output = arr[0] + 1;
+            }
+            Console.WriteLine("------");
+            Console.WriteLine(output);
+            Console.WriteLine("------");
         }
-        if (output == 0)
-        {
-            output = arr[0] + 1;
-        }
-        Console.WriteLine("------");
-
-        Console.WriteLine(output);
-
-        Console.WriteLine("------");
-
-        return 0;
-    }
-    public static void Main(string[] args)
-    {
-        Console.WriteLine("Hello, World  above q array is this \n ");
-        int[] q = { 1, 3, 6, 4, 1, 2 };
-        int[] arr = q.Distinct().ToArray();
-        Solution(arr);
-   
     }
 }
 
 ```
  
- 
 
-<img src="FunctionArray.png" alt="Output " width="200" height="300">
 
 
 
