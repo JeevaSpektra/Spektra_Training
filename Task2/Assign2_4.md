@@ -12,71 +12,83 @@
 
 ```
   using System;
-  class Developer 
-    {
-         //public String solution(int A, int B, int C, int D, int E, int F)
-         //{
+class Developer
+{
+    //public String solution(int A, int B, int C, int D, int E, int F)
+    //{
 
-         //}
-         public string solution(int[] array)
+    //}
+    public String solution(int A, int B, int C, int D, int E, int F)
+
+    {
+        int[] array = { A,B,C,D,E,F };
+        String result = " ";
+
+        for(int s = 0; s < array.Length; s++)
         {
-            String result = " ";
-            for (int i = 0; i < array.Length; ++i)
+            Console.WriteLine(array[s]);
+        }
+        for (int i = 0; i < array.Length; ++i)
+        {
+            for (int j = 0; j < array.Length; ++j)
             {
-                for(int j = 0; j < array.Length; ++j)
+                for (int k = 0; j < array.Length; ++k)
                 {
-                    for (int k = 0; j < array.Length; ++k)
-                    {
-                        if(i == j || j == k || j == i)
-                                              continue;
-                        String hh = array[i] + " " + array[j];
-                        String mm=array[k] + " "+array[6-i-j-k];
-                        String time = hh + " " + mm;
-                        if (hh.CompareTo("24") < 0 && mm.CompareTo("60") < 0 && time.CompareTo(result) > 0) result = time;
-                        Console.WriteLine(result);
-                    }
+                    if (i == j || j == k || j == i)
+                        continue;
+                    String hh = array[i] + " " + array[j];
+                    String mm = array[k] + " " + array[6 - i - j - k];
+                    String time = hh + " " + mm;
+                    if (hh.CompareTo("24") < 0 && mm.CompareTo("60") < 0 && time.CompareTo(result) > 0) result = time;
+                    Console.WriteLine(result);
                 }
             }
-            Console.WriteLine(result);
-            return "";
         }
-            public static void Main(string[] args) 
-            {
-                //Console.WriteLine("Enter  single digits for digital clock: one by one ");
-                //Console.Write("Digit 1 : ");
-                //int a = Convert.ToInt32(Console.ReadLine());
-                //Console.Write("Digit 2 : ");
-                //int b = Convert.ToInt32(Console.ReadLine());
-                //Console.Write("Digit 3 : ");
-                //int c = Convert.ToInt32(Console.ReadLine());
-                //Console.Write("Digit 4 : ");
-                //int d = Convert.ToInt32(Console.ReadLine());
-                //Console.Write("Digit 5 : ");
-                //int e = Convert.ToInt32(Console.ReadLine());
-                //Console.Write("Digit 6 : ");
-                //int f = Convert.ToInt32(Console.ReadLine());
-                //int[] arrayin = { 1, 2, 3, 4, 5, 6 };
+        Console.WriteLine(result);
+        return result;
+    }
+    public static void Main(string[] args)
+    {
+        Console.WriteLine("Enter  single digits for digital clock: one by one ");
+        Console.Write("Digit 1 : ");
+        int h = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Digit 2 : ");
+        int hh = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Digit 3 : ");
+        int m = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Digit 4 : ");
+        int mm = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Digit 5 : ");
+        int s = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Digit 6 : ");
+        int ss = Convert.ToInt32(Console.ReadLine());
 
-                int[] array = { 1, 2, 3, 4 };
+        //int[] arrayin = { 1, 2, 3, 4, 5, 6 };
 
-                Developer obj=new Developer();
+        //int[] array = { 1, 2, 3, 4 };
 
-                obj.solution(arrayin);
+        Developer obj = new Developer();
 
-                obj.solution(array);
+        //obj.solution(array);
 
+        //obj.solution(array);
 
-
-                //String mm = array[k] + " " + array[6 - i - j - k];
-                //String ss = array[s] + " " + array[6 - i - j - k-s];
-                //String time = hh + " " + mm+" "+ss;
-                //if (hh.CompareTo("24") < 0 && mm.CompareTo("60") < 0 && time.CompareTo(result) > 0 &&
-                //    ss.CompareTo("60")<0) result = time;
-                //Console.WriteLine(result);
+        obj.solution(h,hh,m,mm,s,ss);
 
 
-            }
-        }
+
+        //String mm = array[k] + " " + array[6 - i - j - k];
+        //String ss = array[s] + " " + array[6 - i - j - k-s];
+        //String time = hh + " " + mm+" "+ss;
+        //if (hh.CompareTo("24") < 0 && mm.CompareTo("60") < 0 && time.CompareTo(result) > 0 &&
+        //    ss.CompareTo("60")<0) result = time;
+        //Console.WriteLine(result);
+
+
+    }
+}
+
+
 
    
 ```
