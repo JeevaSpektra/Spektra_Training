@@ -7,6 +7,9 @@
 #
 ## Program : 
 
+   
+   ![](images\FunctionArray.png)
+
 ```
 using System;
 using System.Collections.Generic;
@@ -71,7 +74,7 @@ public class Program
  
  
 
-
+<img src="FunctionArray.png" alt="Output " width="200" height="300">
 
 
 
