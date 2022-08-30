@@ -1,0 +1,45 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+
+class LinqExercise8
+{
+    static void Main(string[] args)
+    {
+        string chst, chen;
+        char ch,sh;
+        string[] mycity =
+        {
+                "ROME","LONDON","NAIROBI","CALIFORNIA","ZURICH","NEW DELHI","AMSTERDAM","ABU DHABI", "PARIS"
+            };
+
+        Console.Write("\nThe cities are : 'ROME','LONDON','NAIROBI','CALIFORNIA','ZURICH','NEW DELHI','AMSTERDAM','ABU DHABI','PARIS' \n");
+
+        Console.Write("\nInput starting character for the string : ");
+
+         ch = Convert.ToChar(Console.ReadLine());
+        chst = ch.ToString();
+
+        Console.Write("\nInput ending character for the string : ");
+
+
+        sh = (char)Console.Read();
+
+        chen = sh.ToString();
+
+
+        var _result = from x in mycity    where x.StartsWith(chst)         where x.EndsWith(chen)
+                      select x;
+
+        Console.Write("\n\n");
+
+        foreach (var city in _result)
+        {
+            Console.Write("The city starting with {0} and ending with {1} is : {2} \n", chst, chen, city);
+        }
+
+        Console.ReadLine();
+    }
+}

@@ -1,0 +1,39 @@
+using System;
+public class Developer
+{
+    public static void Main()
+    {
+        float distance;
+        float hr, minute, second;
+
+        float timeSec;
+        float mps;
+        float kph, mph;
+
+        Console.Write(" Please Enter the  Input distance as metres: ");
+        distance = Convert.ToSingle(Console.ReadLine());
+        Console.Write("\n Please Enter the Input timeSec as hour: ");
+        hr = Convert.ToSingle(Console.ReadLine());
+
+
+        Console.Write("\n Please Enter the Input timeSec as minutes: ");
+        minute = Convert.ToSingle(Console.ReadLine());
+
+        Console.Write("\n Please Enter the Input timeSec as seconds: ");
+        second = Convert.ToSingle(Console.ReadLine());
+
+
+        timeSec = (hr * 3600) + (minute * 60) + second;
+        mps = distance / timeSec;
+
+        kph = (distance / 1000.0f) / (timeSec / 3600.0f);
+
+        mph = kph / 1.609f;
+
+
+
+        Console.WriteLine("Our speed  in metres/sec is {0}", mps);
+        Console.WriteLine("Our  speed in km/h is {0}", kph);
+        Console.WriteLine("Our speed in miles/h is {0}", mph);
+    }
+}

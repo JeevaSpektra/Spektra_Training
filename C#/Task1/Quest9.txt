@@ -1,0 +1,23 @@
+using System;
+public class Developer
+{
+  public static void Main()
+  {   
+    string value;  
+    string get; 
+  
+         Console.Write("Input a Number : ");
+        value = Console.ReadLine();
+         
+            int num = Convert.ToInt32(value);
+            get = "";
+            while (num > 1)
+            {
+                int remainder = num % 2;
+                get = Convert.ToString(remainder) + get;
+                num /= 2;
+            }
+            get = Convert.ToString(num) + get;
+            Console.WriteLine("Binary Value of {0}  is :  {1}", value, get);
+        }
+   }
