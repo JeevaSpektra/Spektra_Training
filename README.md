@@ -1,3 +1,5 @@
 # Spektra_Training
-Here I Stored Spektra training Task and Assignments . 
-language C#, Angular,SQL 
+Here I Stored Spektra's training Task and Assignments . 
+### * C# 
+### * SQL
+### * Simple Projects
