@@ -61,7 +61,7 @@ class ATMSoftware
                         
                         Console.WriteLine("Enter The Details one by one Carefully !!!\n");
 
-                        Console.WriteLine("Please Enter the 16 Digit Userpin Bank Send through your Email : \n");
+                        Console.WriteLine("Please Enter the 16 Digit Account Num Bank Send through your Email : \n");
                         userpin = Convert.ToInt64(Console.ReadLine());
                         var temp = userpin;
                         while (temp > 0)
@@ -129,7 +129,7 @@ class ATMSoftware
 
                         Console.WriteLine("\nBalance Section ");
 
-                        Console.WriteLine("\nEnter your 16 Digit Secret PIN : \n");
+                        Console.WriteLine("\nEnter your 16 Digit Secret Account Num : \n");
                         pin = Convert.ToInt64(Console.ReadLine());
 
                         using (SqlCommand cmd = new SqlCommand("exec checkbalance '" + pin + "' ", conn))
@@ -155,7 +155,7 @@ class ATMSoftware
                         break;
                     case 3:
                         Console.WriteLine("\nCASH Withdraw Section ");
-                        Console.WriteLine("\nPlease Enter you user pin : \n");
+                        Console.WriteLine("\nPlease Enter your 16 Digit Secrate Account Num : \n");
                         pin = Convert.ToInt64(Console.ReadLine());
                         Console.WriteLine("\nEnter the Amount you want to Withdraw : \n");
                         withdraw = Convert.ToInt32(Console.ReadLine());
@@ -182,7 +182,7 @@ class ATMSoftware
                         break;
                     case 4:
                         Console.WriteLine("\nDeposite Section !!");
-                        Console.WriteLine("\nEnter your user pin Number : \n");
+                        Console.WriteLine("\nEnter your Secret Account Num : \n");
                         pin = Convert.ToInt64(Console.ReadLine());
                         Console.WriteLine("\nEnter amount you are deposite : \n");
                         deposite = Convert.ToInt32(Console.ReadLine());
@@ -210,9 +210,9 @@ class ATMSoftware
                         break;
                     case 5:
                         Console.WriteLine("Amount Transfer Section\n");
-                        Console.WriteLine("\nEnter your user pin Number : \t");
+                        Console.WriteLine("\nEnter your Secret Account Num : \t");
                         pin = Convert.ToInt64(Console.ReadLine());
-                        Console.WriteLine("\nEnter you want to transfer amount his/her user pin Number : \t");
+                        Console.WriteLine("\nEnter amount  transfer to Beneficiary  Account Num : \t");
                         BigInteger pin2 = Convert.ToInt64(Console.ReadLine());
                         Console.WriteLine("\nEnter amount you are want to transfer : \t");
                         int trans = Convert.ToInt32(Console.ReadLine());
@@ -240,6 +240,7 @@ class ATMSoftware
 
                                 while (reader.Read())
                                 {
+                                    
                                     Console.WriteLine("-----------------------------------");
                                     Console.WriteLine("{0} | {1} | {2} |", reader.GetInt64(0), reader.GetString(1),
                                             reader.GetInt32(2));
