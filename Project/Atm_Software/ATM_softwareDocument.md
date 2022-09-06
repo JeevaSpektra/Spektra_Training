@@ -303,8 +303,24 @@ class ATMSoftware
   
 2.Check balance
 
+  ![](image/Balance.png)
+
 3.Deposit money
+
+  ![](image/Deposite.png)
 
 4.Withdraw money
 
+  ![](image/Withdraw.png)
+
 5.Transfer to another account
+
+  ![](image/Transfer.png)
+
+* After Transfer
+
+  ![](image/FinalBalance.png)
+
+* END Thanks
+
+  ![](image/FinalBalance.png))
