@@ -323,4 +323,4 @@ class ATMSoftware
 
 * END Thanks
 
-  ![](image/FinalBalance.png))
+  ![](image/FinalBalance.png)
