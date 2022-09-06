@@ -5,13 +5,15 @@
 
 Functions supported:
 
-1. Check balance
+1.Create Account
 
-2. Deposit money
+2. Check balance
 
-3. Withdraw money
+3. Deposit money
 
-4. Transfer to another account
+4. Withdraw money
+
+5. Transfer to another account
                   
 #### Description :
 
@@ -294,4 +296,20 @@ class ATMSoftware
 
 }
 
+### Output Screenshots :
+
+1.Create Account
+     ![](images/CreateAccount.png)
+
+2. Check balance
+     ![](images/Balance.png)
+
+3. Deposit money
+     ![](images/Balance.png)
+
+4. Withdraw money
+     ![](images/Withdraw.png)
+
+5. Transfer to another account
+     ![](images/Transfer.png)
 
