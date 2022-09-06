@@ -299,7 +299,7 @@ class ATMSoftware
 
 1.Create Account 
   
-  ![](images/CreateAccount.png)
+  ![](image/CreateAccount.png)
   
 2.Check balance
 
