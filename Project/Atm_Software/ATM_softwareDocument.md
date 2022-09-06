@@ -1,21 +1,23 @@
 #
 #  Project : ATM software
-#
+
 #### Description
 Create a Project for ATM software to use user can Experience Most Easy Transaction and Account Creation
 #### Function Supports 
-            Functions to be supported:
-            
-                        1. Check balance
+ Functions to be supported:
 
-                        2. Deposit money
+1.Create Account 
+  
+2.Check balance
 
-                        3. Withdraw money
+3.Deposit money
 
-                        4. Transfer to another account
+4.Withdraw money
+
+5.Transfer to another account
 
 #### Program :
-
+```
 using System;
 using System.Text;
 using System.Data.SqlClient;
@@ -291,4 +293,16 @@ class ATMSoftware
 
 }
 
+```
 
+#### Output ScreenShots :
+
+1.Create Account 
+  
+2.Check balance
+
+3.Deposit money
+
+4.Withdraw money
+
+5.Transfer to another account
