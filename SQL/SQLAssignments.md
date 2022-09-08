@@ -19,12 +19,6 @@ Select Firstname from Jeeva where  LeaveDays =( select MAX(LeaveDays) from Jeeva
  ```
 	select top 1 * from Jeeva where LeaveDays < (select max(LeaveDays) from Jeeva)order by LeaveDays desc
 
-            OR
-            
-with cte
-as
-(
-select *,ROW_NUMBER() OVER(order by Leavedays desc ) AS no  from Jeeva)  select * from CTE  where no=2
  ```
 #### 3. Print n th  highest salary
 ```
