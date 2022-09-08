@@ -1,10 +1,10 @@
-using System;
+
 using System.Text;
 using System.Data.SqlClient;
-using System.Reflection.PortableExecutable;
+
 using System.Numerics;
 using System.Linq.Expressions;
-using System.Net;
+
 
 class ATMSoftware
 {
@@ -23,6 +23,8 @@ class ATMSoftware
         BigInteger pin;
         int withdraw;
         int deposite;
+        int check = 0;
+        int count = 0;
 
         do
         {
@@ -32,13 +34,13 @@ class ATMSoftware
                 conn.Open();
                 //Console.WriteLine("Connection Successful ");
                 StringBuilder strBuild = new StringBuilder();
-                StringBuilder strBuild2 = new StringBuilder();
+                //StringBuilder strBuild2 = new StringBuilder();
                 Console.WriteLine("\t \t ----------------------------------------");
                 Console.WriteLine("\t \t| Welcome to Spektra's 24/7 ATM Service | ");
                 Console.WriteLine("\t \t ----------------------------------------");
                 Console.WriteLine("\n \nPlease insert your Card ! or Click Enter  \n ...");
                 Console.ReadLine();
-
+                Console.WriteLine("Select Option \n");
                 Console.WriteLine("" +
                     "1.Create Account\n" +
                     "2.Check balance\n" +
@@ -53,13 +55,13 @@ class ATMSoftware
                 long PhoneNo;
                 string Address;
                 int input = Convert.ToInt32(Console.ReadLine());
-                int count = 0;
+                
                 
                 switch (input)
                 {
                     case 1:
                         
-                        Console.WriteLine("Enter The Details one by one Carefully !!!\n");
+                        Console.WriteLine("\nEnter The Details one by one Carefully !!!\n");
 
                         Console.WriteLine("Please Enter the 16 Digit Account Num Bank Send through your Email : \n");
                         userpin = Convert.ToInt64(Console.ReadLine());
@@ -114,9 +116,21 @@ class ATMSoftware
                         }
                         else
                         {
-                            Console.WriteLine("Sorry the Account Num you have entered is Incorrect." +
+                            
+                            Console.WriteLine("\nSorry the Account Num you have entered is Incorrect." +
                                 " Please Enter  your valid" +
                     " 16 Digit Account Number : ");
+                            check++;
+                            
+                            if(check > 2)
+                            {
+                                Console.WriteLine("\n \t \t ** Account Number Incorrect !!! \n" +
+                                    "\n \t \t \nYou Enter 3 times  Account Number.Your Account is Blocked for next 24 hours" +
+                                    "\n \t \t \nPlease Reach out  Near  Branch \n" +
+                                    "\n \t \t \tCustomer Care : ATMspektra@gmail.com ");
+                                return  ;
+                            }
+
 
                         }
 
@@ -131,25 +145,54 @@ class ATMSoftware
 
                         Console.WriteLine("\nEnter your 16 Digit Secret Account Num : \n");
                         pin = Convert.ToInt64(Console.ReadLine());
-
-                        using (SqlCommand cmd = new SqlCommand("exec checkbalance '" + pin + "' ", conn))
-
+                        int countb = 0;
+                        var tempb = pin;
+                        while (tempb > 0)
                         {
-                            SqlDataReader reader = cmd.ExecuteReader();
+                            tempb = tempb / 10;
+                            countb++;
+                        }
+                        if (countb == 16)
+                        {
 
-                            while (reader.Read())
+                            using (SqlCommand cmd = new SqlCommand("exec checkbalance '" + pin + "' ", conn))
+
                             {
-                                Console.WriteLine("-----------------------------------");
-                                Console.WriteLine("{0} | {1} | {2} |", reader.GetInt64(0), reader.GetString(1),
-                                        reader.GetInt32(2));
-                                Console.WriteLine("-----------------------------------\n");
-                                Console.WriteLine("Hi *{0} in you account Current Balance is *{1} \n ",
-                                    reader.GetString(1),
-                                        reader.GetInt32(2));
+                                SqlDataReader reader = cmd.ExecuteReader();
+
+                                while (reader.Read())
+                                {
+                                    Console.WriteLine("-----------------------------------");
+                                    Console.WriteLine("{0} | {1} | {2} |", reader.GetInt64(0), reader.GetString(1),
+                                            reader.GetInt32(2));
+                                    Console.WriteLine("-----------------------------------\n");
+                                    Console.WriteLine("Hi *{0} in you account Current Balance is *{1} \n ",
+                                        reader.GetString(1),
+                                            reader.GetInt32(2));
+                                }
+                                reader.ToString();
+                                Console.WriteLine("\n\t \t \t  Thank you For Using Spektra's ATM \n  \t \t \t " +
+                                                                " \nCustomer Care : ATMspektra@gmail.com ");
                             }
-                            reader.ToString();
-                            Console.WriteLine("\n\t \t \t  Thank you For Using Spektra's ATM \n  \t \t \t " +
-                                                            " \nCustomer Care : ATMspektra@gmail.com ");
+                        }
+                        else
+                        {
+
+                            Console.WriteLine("\nSorry the Account Num you have entered is Incorrect." +
+                                " Please Enter  your valid" +
+                    " 16 Digit Account Number : ");
+                            check++;
+
+                            if (check > 2)
+                            {
+                                Console.WriteLine("\n \t \t ** Account Number Incorrect !!! \n" +
+                                    "\n \t \t \nYou Enter 3 times wrong Account Number.Your Account is Blocked for next 24 hours" +
+                                    "\n \t \t \nPlease Reach out  Near  Branch \n" +
+                                    "\n \t \t \tCustomer Care : ATMspektra@gmail.com ");
+                                return;
+                            }
+
+
                         }
 
                         break;
@@ -240,6 +283,7 @@ class ATMSoftware
 
                                 while (reader.Read())
                                 {
+                                    
                                     
                                     Console.WriteLine("-----------------------------------");
                                     Console.WriteLine("{0} | {1} | {2} |", reader.GetInt64(0), reader.GetString(1),
