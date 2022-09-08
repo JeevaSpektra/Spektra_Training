@@ -351,6 +351,10 @@ class ATMSoftware
 2.Check balance
 
   ![](image/Balance.png)
+  
+  * Account Block
+
+  ![](image/AccountBlock3.png)
 
 3.Deposit money
 
