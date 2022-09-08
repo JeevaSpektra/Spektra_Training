@@ -78,7 +78,7 @@ Select PP.FirstName,PP.LastName,PA.AddressLine1+(','+PA.AddressLine2+','+PA.City
 #### 3. Print the number of employees that have Home + Billing addresses
 
 ```
-Query
+Select count (Employee_ID) as HomeandBilling from Jeeva Where   BillingAddress is NOT NULL AND home is NOT NULL
 ```
 #### 4. Print the count of employees that are living in Texas state.
 ```
