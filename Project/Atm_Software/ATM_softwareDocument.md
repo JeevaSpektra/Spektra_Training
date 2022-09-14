@@ -19,142 +19,18 @@ Create a Project for ATM software to use user can Experience Most Easy Transacti
 #### Program :
 ```
 
+
 using System.Text;
 
 using System.Data.SqlClient;
 
 using System.Numerics;
 
-
+using Microsoft.Extensions.Configuration;
 
 class ATMSoftware
 {
-    static void withdrawal(BigInteger pin, int amount, SqlConnection conn)
-    {
-        StringBuilder StrBuild = new StringBuilder();
-        StrBuild.Append("exec withdraw '" + pin + "','" + amount + "' ");
-        string SqlQry = StrBuild.ToString();
-
-        using (SqlCommand cmd = new SqlCommand(SqlQry, conn))
-
-        {
-            SqlDataReader reader = cmd.ExecuteReader();
-
-            while (reader.Read())
-            {
-                Console.WriteLine("\nWithdraw Done Check Your Balance.\n \a");
-                Console.WriteLine("-----------------------------------");
-                Console.WriteLine("{0} | {1} | {2} |", reader.GetInt64(0), reader.GetString(1),
-                        reader.GetInt32(2));
-                Console.WriteLine("----------------------------------- \n");
-                Console.WriteLine("\nHi | {0} | you are withdraw Amount | {1} | Sucessfully. Now Balance is : | {2} |", reader.GetString(1), amount, reader.GetInt32(2));
-
-            }
-            reader.ToString(); Console.WriteLine("\n\t \t \t  Thank you For Using Spektra's ATM \n  \t \t \t " +
-                " \n \t \t \t Customer Care : ATMspektra@gmail.com ");
-        }
-
-    }
-    static void Balance(BigInteger pin, SqlConnection conn)
-    {
-        StringBuilder StrBuild = new StringBuilder();
-        StrBuild.Append("exec checkbalance'" + pin + "' ");
-        string SqlQry = StrBuild.ToString();
-        using (SqlCommand cmd = new SqlCommand(SqlQry, conn))
-
-        {
-            SqlDataReader reader = cmd.ExecuteReader();
-
-            while (reader.Read())
-            {
-                Console.WriteLine("-----------------------------------");
-                Console.WriteLine("{0} | {1} | {2} |", reader.GetInt64(0), reader.GetString(1),
-                        reader.GetInt32(2));
-                Console.WriteLine("-----------------------------------\n");
-                Console.WriteLine("Hi *{0} in you account Current Balance is *{1} \n ",
-                    reader.GetString(1),
-                        reader.GetInt32(2));
-            }
-            reader.ToString();
-            Console.WriteLine("\n\t \t \t  Thank you For Using Spektra's ATM \n  \t \t \t " +
-                                            " \nCustomer Care : ATMspektra@gmail.com ");
-        }
-
-    }
-    static void DespositeSection(BigInteger pin, int deposite, SqlConnection conn)
-    {
-        StringBuilder StrBuild = new StringBuilder();
-        StrBuild.Append("exec deposite '" + pin + "','" + deposite + "' ");
-        string SqlQry = StrBuild.ToString();
-        using (SqlCommand cmd = new SqlCommand(SqlQry, conn))
-
-        {
-            SqlDataReader reader = cmd.ExecuteReader();
-
-            while (reader.Read())
-            {
-                Console.WriteLine("\n Amount Deposited . Balance Updated !! \n \a");
-                Console.WriteLine("-----------------------------------");
-                Console.WriteLine("{0} | {1} | {2} | ", reader.GetInt64(0), reader.GetString(1),
-                        reader.GetInt32(2));
-                Console.WriteLine("------------------------------------");
-                Console.WriteLine("\nHi | {0} | you are Deposited Amount | {1} | Sucessfully Now Balance is : " +
-                    "| {2} |", reader.GetString(1), deposite, reader.GetInt32(2));
-            }
-            reader.ToString();
-
-            Console.WriteLine("\n\t \t \t  Thank you For Using Spektra's ATM \n  \t \t \t " +
-                " \n \t \t \t  Customer Care : ATMspektra@gmail.com ");
-
-        }
-
-    }
-    static void Transfer(BigInteger pin, BigInteger pin2, int trans, SqlConnection conn)
-    {
-        StringBuilder StrBuild = new StringBuilder();
-        StrBuild.Append("exec MoneyTransfer '" + pin + "'," + pin2 + ",'" + trans + "' ");
-        string SqlQry = StrBuild.ToString();
-
-        using (SqlCommand cmd = new SqlCommand(SqlQry, conn))
-
-        {
-            cmd.ExecuteNonQuery();
-            Console.WriteLine("\nAmount  Transfered Sucessfully  :) \n");
-            Console.WriteLine("\nYou want to check Balance please Give Yes to Continue\n");
-            Console.WriteLine("\n\t \t \t Thank you For Using Spektra's ATM \n  \t \t \t " +
-                " \n \n \t \t \tCustomer Care : ATMspektra@gmail.com ");
-
-        }
-        if (trans != null)
-        {
-            using (SqlCommand cmd = new SqlCommand("exec checkbalance '" + pin + "' ", conn))
-
-            {
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
-                {
-
-
-                    Console.WriteLine("-----------------------------------");
-                    Console.WriteLine("{0} | {1} | {2} |", reader.GetInt64(0), reader.GetString(1),
-                            reader.GetInt32(2));
-                    Console.WriteLine("-----------------------------------\n");
-                    Console.WriteLine("Hi *{0} in you account Current Balance is *{1} \n ",
-                        reader.GetString(1),
-                            reader.GetInt32(2));
-                }
-                reader.ToString();
-                Console.WriteLine("\n\t \t \t  Thank you For Using Spektra's ATM \n  \t \t \t " +
-                                                " \nCustomer Care : ATMspektra@gmail.com ");
-            }
-        }
-
-    }
-
-
-
-
+    private static IConfiguration _iconfiguration;
     public static void Main(String[] args)
     {
         //Console.WriteLine("We Getting Connect");
@@ -192,25 +68,27 @@ class ATMSoftware
                     "3.Withdraw Case\n" +
                     "4.Deposit\n" +
                     "5.Transfer Amount \n");
-                BigInteger userpin;
-                string name;
+                BigInteger UserPin;
+               
+                string Name;
                 string Email;
                 string IFSCCODE;
                 string BranchName;
                 long PhoneNo;
                 string Address;
-                int input = Convert.ToInt32(Console.ReadLine());
+                int Input = Convert.ToInt32(Console.ReadLine());
 
 
-                switch (input)
+                switch (Input)
                 {
                     case 1:
 
                         Console.WriteLine("\nEnter The Details one by one Carefully !!!\n");
 
-                        Console.WriteLine("Please Enter the 16 Digit Account Num Bank Send through your Email : \n");
-                        userpin = Convert.ToInt64(Console.ReadLine());
-                        var temp = userpin;
+                        Console.WriteLine("Please Enter the 16 Digit New Account Number  Bank Send through your Email : \n");
+
+                        UserPin = Convert.ToInt64(Console.ReadLine());
+                        var temp = UserPin;
                         while (temp > 0)
                         {
                             temp = temp / 10;
@@ -221,7 +99,7 @@ class ATMSoftware
                         {
 
                             Console.WriteLine("Enter your Name : ");
-                            name = Console.ReadLine();
+                            Name = Console.ReadLine();
 
                             Console.WriteLine("Enter your Email : ");
                             Email = Console.ReadLine();
@@ -242,7 +120,7 @@ class ATMSoftware
                                 " for Minimum 1000 \n Please Enter Amount : ");
                             int balance = Convert.ToInt32(Console.ReadLine());
 
-                            StrBuild.Append("exec UserAcctForm '" + userpin + "','" + name + "','" + Email + "'," +
+                            StrBuild.Append("exec UserAcctForm '" + UserPin + "','" + Name + "','" + Email + "'," +
                                 "'" + IFSCCODE + "','" + BranchName + "'," + PhoneNo + ",'" + Address + "'," + balance + "  ");
 
                             string SqlQry = StrBuild.ToString();
@@ -261,7 +139,7 @@ class ATMSoftware
                         }
                         else
                         {
-
+                            UserPin = 0;
                             Console.WriteLine("\nSorry the Account Num you have entered is Incorrect." +
                                 " Please Enter  your valid" +
                     " 16 Digit Account Number : ");
@@ -469,21 +347,151 @@ class ATMSoftware
             conn.Close();
             Console.WriteLine("\n \n Do you want Continute Press yes / No\n");
             str = Console.ReadLine();
-            if(str != "yes") 
-            { 
-                Console.WriteLine("\t \t"+str+ "\n \t Please Enter Valid Input Yes / NO");
+            if (str != "yes")
+            {
+                Console.WriteLine("\t \t" + str + "\n \t Please Enter Valid Input Yes / NO");
             }
             else
             {
                 Console.WriteLine("Yes You can\n");
             }
-        } 
-            while (str == "yes") ;
+        }
+        while (str == "yes");
 
-            Console.WriteLine("\nThank you For Choosing Spektra ATM\n");
+        Console.WriteLine("\nThank you For Choosing Spektra ATM\n");
+    }
+    static void withdrawal(BigInteger pin, int amount, SqlConnection conn)
+    {
+        StringBuilder StrBuild = new StringBuilder();
+        StrBuild.Append("exec withdraw '" + pin + "','" + amount + "' ");
+        string SqlQry = StrBuild.ToString();
+
+        using (SqlCommand cmd = new SqlCommand(SqlQry, conn))
+
+        {
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Console.WriteLine("\nWithdraw Done Check Your Balance.\n \a");
+                Console.WriteLine("-----------------------------------");
+                Console.WriteLine("{0} | {1} | {2} |", reader.GetInt64(0), reader.GetString(1),
+                        reader.GetInt32(2));
+                Console.WriteLine("----------------------------------- \n");
+                Console.WriteLine("\nHi | {0} | you are withdraw Amount | {1} | Sucessfully. Now Balance is : | {2} |", reader.GetString(1), amount, reader.GetInt32(2));
+
+            }
+            reader.ToString(); Console.WriteLine("\n\t \t \t  Thank you For Using Spektra's ATM \n  \t \t \t " +
+                " \n \t \t \t Customer Care : ATMspektra@gmail.com ");
+        }
+
+    }
+    static void Balance(BigInteger pin, SqlConnection conn)
+    {
+        StringBuilder StrBuild = new StringBuilder();
+        StrBuild.Append("exec checkbalance'" + pin + "' ");
+        string SqlQry = StrBuild.ToString();
+        using (SqlCommand cmd = new SqlCommand(SqlQry, conn))
+
+        {
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Console.WriteLine("-----------------------------------");
+                Console.WriteLine("{0} | {1} | {2} |", reader.GetInt64(0), reader.GetString(1),
+                        reader.GetInt32(2));
+                Console.WriteLine("-----------------------------------\n");
+                Console.WriteLine("Hi *{0} in you account Current Balance is *{1} \n ",
+                    reader.GetString(1),
+                        reader.GetInt32(2));
+            }
+            reader.ToString();
+            Console.WriteLine("\n\t \t \t  Thank you For Using Spektra's ATM \n  \t \t \t " +
+                                            " \nCustomer Care : ATMspektra@gmail.com ");
+        }
+
+    }
+    static void DespositeSection(BigInteger pin, int deposite, SqlConnection conn)
+    {
+        StringBuilder StrBuild = new StringBuilder();
+        StrBuild.Append("exec deposite '" + pin + "','" + deposite + "' ");
+        string SqlQry = StrBuild.ToString();
+        using (SqlCommand cmd = new SqlCommand(SqlQry, conn))
+
+        {
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Console.WriteLine("\n Amount Deposited . Balance Updated !! \n \a");
+                Console.WriteLine("-----------------------------------");
+                Console.WriteLine("{0} | {1} | {2} | ", reader.GetInt64(0), reader.GetString(1),
+                        reader.GetInt32(2));
+                Console.WriteLine("------------------------------------");
+                Console.WriteLine("\nHi | {0} | you are Deposited Amount | {1} | Sucessfully Now Balance is : " +
+                    "| {2} |", reader.GetString(1), deposite, reader.GetInt32(2));
+            }
+            reader.ToString();
+
+            Console.WriteLine("\n\t \t \t  Thank you For Using Spektra's ATM \n  \t \t \t " +
+                " \n \t \t \t  Customer Care : ATMspektra@gmail.com ");
+
+        }
+
+    }
+    static void Transfer(BigInteger pin, BigInteger pin2, int trans, SqlConnection conn)
+    {
+        StringBuilder StrBuild = new StringBuilder();
+        StrBuild.Append("exec MoneyTransfer '" + pin + "'," + pin2 + ",'" + trans + "' ");
+        string SqlQry = StrBuild.ToString();
+
+        using (SqlCommand cmd = new SqlCommand(SqlQry, conn))
+
+        {
+            cmd.ExecuteNonQuery();
+            Console.WriteLine("\nAmount  Transfered Sucessfully  :) \n");
+            Console.WriteLine("\nYou want to check Balance please Give Yes to Continue\n");
+            Console.WriteLine("\n\t \t \t Thank you For Using Spektra's ATM \n  \t \t \t " +
+                " \n \n \t \t \tCustomer Care : ATMspektra@gmail.com ");
+
+        }
+        if (trans != null)
+        {
+            using (SqlCommand cmd = new SqlCommand("exec checkbalance '" + pin + "' ", conn))
+
+            {
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+
+                    Console.WriteLine("-----------------------------------");
+                    Console.WriteLine("{0} | {1} | {2} |", reader.GetInt64(0), reader.GetString(1),
+                            reader.GetInt32(2));
+                    Console.WriteLine("-----------------------------------\n");
+                    Console.WriteLine("Hi *{0} in you account Current Balance is *{1} \n ",
+                        reader.GetString(1),
+                            reader.GetInt32(2));
+                }
+                reader.ToString();
+                Console.WriteLine("\n\t \t \t  Thank you For Using Spektra's ATM \n  \t \t \t " +
+                                                " \nCustomer Care : ATMspektra@gmail.com ");
+            }
+        }
+
     }
 
+
+
+
+    
+
 }
+
+
+
 
 
 
