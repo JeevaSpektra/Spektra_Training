@@ -1,0 +1,25 @@
+<app-navbar></app-navbar>
+<div class="container my-5">
+  <h1 class="mb-3 text-center">Transaction History</h1>
+  <br>
+  <table class="table table-bordered table-hover table-striped" *ngIf= "transactionsAll && transactionsAll.length > 0">
+      <thead>
+          <tr>
+              <th>Transaction Id</th>
+              <th>User Account Number</th>
+              <th>Recepient Account Number</th>
+              <th>Branch Name</th>
+              <th>Amount Transfer</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let transaction of transactionsAll">
+              <td>{{transaction.transactionId}}</td>
+              <td>{{transaction.accountNumber}}</td>
+              <td>{{transaction.recipientAccountNumber}}</td>
+              <td><span class="WebRupee">&#x20B9;</span> {{transaction.amountTransfer}}</td>
+          </tr>
+      </tbody>
+  </table>
+  <p style="font-size:x-large;" *ngIf="!transactionsAll || transactionsAll.length <= 0">No Transactions Found</p>
+</div>

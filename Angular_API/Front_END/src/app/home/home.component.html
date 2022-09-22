@@ -1,0 +1,32 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="text-center mt-5">
+    <h3>Home page</h3>
+  </div>
+</div>
+<div class="container my-5 ">
+  <h1>Details</h1>
+
+  <table ngClass="table table-striped" >
+    <thead>
+      <th>Id</th>
+      <th>AccountNumber</th>
+      <th>FullName</th>
+      <th>BranchName</th>
+      <th>Balance</th>
+      <th>CardPin</th>
+    </thead>
+    <tbody>
+
+      <tr *ngFor="let ATMDetails of detail">
+        <td>{{ATMDetails.id}}</td>
+        <td>{{ATMDetails.accountNumber}}</td>
+        <td>{{ATMDetails.fullName}}</td>
+        <td>{{ATMDetails.branchName}}</td>
+        <td>{{ATMDetails.totalBalance}}</td>
+        <td>{{ATMDetails.cardPin}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <p *ngIf="!detail || detail.length <=0">No Users Found</p>
+</div>

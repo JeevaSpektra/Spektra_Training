@@ -1,0 +1,42 @@
+
+<nav><app-navbar></app-navbar></nav>
+
+<div>
+
+
+
+<div class="login-box">
+  <div class="col-4">
+      <h4 class="fw-bold text-danger" *ngIf="valid == 'invalid'">Check Credentials again</h4>
+
+      <h4 class="animate-charcter" *ngIf="valid == 'valid'"> {{balanceInfo.name}}, <span class="WebRupee">&#x20B9;</span> {{amountTransfer}} Amount is successfully Deposited to your account.</h4>
+      <h4 class="animate-charcter" *ngIf="valid == 'valid'">After Successfully Deposited: you have <span class="WebRupee">&#x20B9;</span> {{balanceInfo.currBal}}  your account.</h4>
+      <form #form="ngForm" (ngSubmit)="transferData()" *ngIf="valid == 'invalid' || valid == ''">
+          <div class="mb-3">
+              <i class="fa-regular fa-credit-card me-2"></i>
+              <label for="accno" class="form-label">Account No (16 Digits)</label>
+              <input type="number" class="form-control" id="accno" name="accountNumber" placeholder="0000 0000 0000 0000" [(ngModel)]="accountNumberone" required>
+          </div>
+          <div class="mb-3">
+              <i class="fas fa-regular fa-lock me-2"></i>
+              <label for="pin" class="form-label me-2">Pin (4 Digits)</label>
+              <input type="password" minlength="4" maxlength="4" class="form-control" id="pin" name="cardPin" placeholder="x x x x" [(ngModel)]="pin" required>
+          </div>
+          <div class="mb-3">
+            <i class="fas fa-regular fa-lock me-2"></i>
+            <label for="rec-accno" class="form-label">Recepient Account No (16 Digits)</label>
+            <input type="number" class="form-control" id="rec-accno" name="recipientAccountNumber" placeholder="0000 0000 0000 0000" [(ngModel)] = 'accountNumbertwo' required>
+        </div>
+          <div class="mb-3">
+              <i class="fa-solid fa-coins me-2"></i>
+              <label for="amount" class="form-label me-2">Enter Amount</label>
+              <input type="number" class="form-control" id="amount" name="addAmount" placeholder="&#x20B9;" [(ngModel)]="amountTransfer" required>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-hover color-5">Transfer</button>
+      </form>
+  </div>
+</div>
+
+
+</div>
